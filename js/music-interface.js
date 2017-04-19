@@ -11,6 +11,7 @@ var displayAlbums = function(albums) {
 }
 
 var displayTracks = function(tracks) {
+  $('.showTracks').text("");
   tracks.forEach(function(track) {
     $('.showTracks').append("<li>" + track.track_title + "</li>");
   });
@@ -23,18 +24,13 @@ $(document).ready(function() {
     newMusicObject.getAlbums(genre, displayAlbums);
 
   });
-  // $('.tracksByAlbum').bind("click", function() {
-  //   console.log("Hi, Mom!");
-  //   // var albumId = $('.albumId').val();
-  //   // var currentMusicObject = new Music();
-  //   // currentMusicObject.getTracks(albumId, displayTracks);
-  // });
 });
 
 
 $(document).on("click", ".tracksByAlbum", function() {
   console.log("Hi, Mom!");
-  var albumId = $('.albumId').val();
+  // var albumId = $('.albumId').val();
+  var albumId = $('this.albumId').val();
   var currentMusicObject = new Music();
   currentMusicObject.getTracks(albumId, displayTracks);
 });

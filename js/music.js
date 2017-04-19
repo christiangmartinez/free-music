@@ -17,6 +17,7 @@ Music.prototype.getAlbums = function (genre, displayAlbums) {
 }
 
 Music.prototype.getTracks = function (albumId, displayTracks) {
+  console.log(albumId);
   $.get('https://freemusicarchive.org/api/get/tracks.json?api_key=' + apiKey + '&album_id=' + albumId)
   .then(function(response) {
     var obj = JSON.parse(response);
