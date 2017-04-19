@@ -4,13 +4,10 @@ var apiKey = require('./../.env').apiKey;
 var displayAlbums = function(albums) {
   albums.forEach(function(album) {
     $('.showAlbums').append('<div class="form-group">' +
-            '<button onclick=programTrack(' + album.album_id + ') class="btn btn-primary">' + album.album_title + '</button>' +
+            '<input class="albumId" type="hidden" value="' + album.album_id + '">' +
+            '<button class="tracksByAlbum btn btn-primary">' + album.album_title + '</button>' +
             '</div>');
   });
-}
-
-var programTrack = function(albumId) {
-  newMusicObject.getTracks(albumId, displayTracks);
 }
 
 var displayTracks = function(tracks) {
@@ -19,17 +16,25 @@ var displayTracks = function(tracks) {
   });
 }
 
-var newMusicObject = new Music();
-
 $(document).ready(function() {
+  var newMusicObject = new Music();
   $('#genreSearch').click(function() {
     var genre = $('#genreName').val();
     newMusicObject.getAlbums(genre, displayAlbums);
+
   });
-  $('.tracksByAlbum').on("click", function() {
-    console.log("Hi, Mom!");
-    var albumId = $('.albumId').val();
-    var currentMusicObject = new Music();
-    currentMusicObject.getTracks(albumId, displayTracks);
-  });
+  // $('.tracksByAlbum').bind("click", function() {
+  //   console.log("Hi, Mom!");
+  //   // var albumId = $('.albumId').val();
+  //   // var currentMusicObject = new Music();
+  //   // currentMusicObject.getTracks(albumId, displayTracks);
+  // });
+});
+
+
+$(document).on("click", ".tracksByAlbum", function() {
+  console.log("Hi, Mom!");
+  var albumId = $('.albumId').val();
+  var currentMusicObject = new Music();
+  currentMusicObject.getTracks(albumId, displayTracks);
 });
