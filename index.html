@@ -9,11 +9,26 @@
   </head>
   <body>
     <div class="container">
-      <div class="form-group">
-        <label for="genreName">Search by genre</label>
-        <input id="genreName" type="text" value="rock">
-        <button id="genreSearch" class="btn btn-primary">Search!</button>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="artistName">Search by artist</label>
+            <input id="artistName" type="text">
+            <button id="artistSearch" class="btn btn-danger">Search!</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="genreName">Search by genre</label>
+            <input id="genreName" type="text">
+            <button id="genreSearch" class="btn btn-primary">Search!</button>
+          </div>
+        </div>
       </div>
+      <div class="showArtists">
+
+      </div>
+      <p id="albumQueryMessage"></p>
       <ul class="showAlbums">
       </ul>
       <ul class="showTracks">
