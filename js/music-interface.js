@@ -1,12 +1,8 @@
 var Music = require('./../js/music.js').musicModule;
-var apiKey = require('./../.env').apiKey;
 
 var displayAlbums = function(albums) {
   albums.forEach(function(album) {
-    $('.showAlbums').append('<div class="form-group">' +
-            '<input class="albumId" type="hidden" value="' + album.album_id + '">' +
-            '<button class="tracksByAlbum btn btn-primary">' + album.album_title + '</button>' +
-            '</div>');
+    $('.showAlbums').append('<input type="button" id="' + album.album_id + '" class="tracksByAlbum" value="'+ album.album_title +'"/>');
   });
 }
 
@@ -28,9 +24,9 @@ $(document).ready(function() {
 
 
 $(document).on("click", ".tracksByAlbum", function() {
-  console.log("Hi, Mom!");
+  console.log($(this).attr('id'));
   // var albumId = $('.albumId').val();
-  var albumId = $('this.albumId').val();
+  var albumId = $(this).attr('id');
   var currentMusicObject = new Music();
   currentMusicObject.getTracks(albumId, displayTracks);
 });
