@@ -9,8 +9,14 @@ var displayAlbums = function(albums) {
 var displayTracks = function(tracks) {
   $('.showTracks').text("");
   tracks.forEach(function(track) {
-    $('.showTracks').append("<li>" + track.track_title + "</li>");
+    $('.showTracks').append('<li><input type="button" id="' + track.track_id + '" class="trackDetails" value="'+ track.track_title +'"/></li>');
   });
+}
+
+var trackDetails = function(track) {
+  // tracks.forEach(function(track) {
+  $('#showTrackDetails').append('Track name: ' + track.track_title + '; Album: ' + track.album_title + '; Artist name: ' + track.artist_name);
+  // });
 }
 
 $(document).ready(function() {
@@ -24,9 +30,15 @@ $(document).ready(function() {
 
 
 $(document).on("click", ".tracksByAlbum", function() {
-  console.log($(this).attr('id'));
-  // var albumId = $('.albumId').val();
   var albumId = $(this).attr('id');
   var currentMusicObject = new Music();
   currentMusicObject.getTracks(albumId, displayTracks);
+});
+
+$(document).on("click", ".trackDetails", function() {
+  $("#showTrackDetails").remove();
+  $(this).after('<span id="showTrackDetails"></span>');
+  var trackId = $(this).attr('id');
+  var currentMusicObject = new Music();
+  currentMusicObject.getTrackDetails(trackId, trackDetails);
 });
